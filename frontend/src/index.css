@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+.container{
+  @apply md:px-20
+}
+
+.error{
+  @apply text-red-600 text-sm tracking-tight
+}

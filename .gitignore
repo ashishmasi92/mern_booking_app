@@ -1,0 +1,8 @@
+
+backend_2/
+pop/
+node_modules/
+dist/
+.env
+.env.e2e
+.idea/
