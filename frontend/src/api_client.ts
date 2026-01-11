@@ -243,9 +243,7 @@ type ResponseType = {
   data: HotelType;
 };
 
-export const fetchHotelById = async (
-  hotelId: string
-): Promise<ResponseType> => {
+export const fetchHotelById = async (hotelId: string): Promise<ResponseType> => {
   let response = await fetch(`${url}/api/v1/hotels/${hotelId}`);
 
   let d = await response.json();
@@ -270,7 +268,7 @@ export async function fetchCurrentUser(): Promise<Me> {
   let d = response.json();
 
   if (!response.ok) {
-    throw new Error(d?.message);
+    throw new Error("something went wrong");
   }
 
   return d;

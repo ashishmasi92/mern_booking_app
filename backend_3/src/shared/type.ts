@@ -1,4 +1,4 @@
-import mongoose, { Types } from "mongoose";
+import { Types } from "mongoose";
 
 export interface UserType {
   email: string;
@@ -8,6 +8,7 @@ export interface UserType {
 }
 
 export interface HotelType {
+  _id: Types.ObjectId;
   userId: Types.ObjectId;
   name: string;
   city: string;
@@ -25,7 +26,6 @@ export interface HotelType {
 }
 
 export type BookingType = {
-  _id: string;
   userId: Types.ObjectId;
   firstName: string;
   lastName: string;

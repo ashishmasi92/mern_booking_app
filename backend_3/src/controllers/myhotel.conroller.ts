@@ -148,7 +148,6 @@ export async function updateHotelById(req: Request, res: Response) {
     let userId = new mongoose.Types.ObjectId(user.id);
     let hotelId = new mongoose.Types.ObjectId(id);
     updatedData.lastUpdated = new Date();
-    
 
     const updateHotel = await Hotel.findOneAndUpdate(
       {
@@ -160,7 +159,7 @@ export async function updateHotelById(req: Request, res: Response) {
       },
       {
         new: true,
-       
+
       }
     );
 
@@ -168,25 +167,21 @@ export async function updateHotelById(req: Request, res: Response) {
       return customResponse(res, 400, false, "no hotel found and updated");
     }
 
-    
-    updateHotel.imageUrls = [...(updatedData.imageUrls ?? [])]
-    
-    
+    updateHotel.imageUrls = [...(updatedData.imageUrls ?? [])];
+
     let files = req.files as Express.Multer.File[] | undefined;
-      if (files && files.length >0) {
+    if (files && files.length > 0) {
+      let getUpdateImg = await uploadImg(files);
+      console.log(getUpdateImg, updateHotel.imageUrls);
+      updateHotel.imageUrls = [
+        ...getUpdateImg,
+        ...(updatedData.imageUrls ?? []),
+      ];
+    }
 
-        let getUpdateImg = await uploadImg(files);
-        console.log(getUpdateImg,updateHotel.imageUrls);
-        updateHotel.imageUrls = [
-          ...getUpdateImg,
-          ...(updatedData.imageUrls ?? []),
-        ];
-
-      }
-    
     // update img
-    if(updateHotel.imageUrls.length==0){
-      return customResponse(res,400,false,"at least one image added")
+    if (updateHotel.imageUrls.length == 0) {
+      return customResponse(res, 400, false, "at least one image added");
     }
 
     await updateHotel.save();

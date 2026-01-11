@@ -4,6 +4,7 @@
     "module": "commonjs",
     "rootDir": ".",
     "outDir": "./dist",
+    "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -19,7 +20,6 @@
   "include": ["index.ts", "src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
-
 
 // {
 //   // Visit https://aka.ms/tsconfig to read more about this file
@@ -58,7 +58,7 @@
 //     // Recommended Options
 //     "strict": true,
 //     "jsx": "react-jsx",
- 
+
 //     "isolatedModules": true,
 //     "noUncheckedSideEffectImports": true,
 //     "moduleDetection": "force",

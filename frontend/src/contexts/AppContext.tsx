@@ -2,7 +2,8 @@ import { createContext, useContext, useState } from "react";
 import Toast from "../components/Toast.tsx";
 import { useQuery } from "@tanstack/react-query";
 import { validateToken } from "../api_client.ts";
-import { loadStripe, Stripe } from "@stripe/stripe-js";
+import { loadStripe} from "@stripe/stripe-js";
+import type { Stripe } from "@stripe/stripe-js";
 
 const Stripe_Bub_Key = import.meta.env.VITE_PUBLISHER_KEY || "";
 

@@ -77,8 +77,10 @@ export default function GuestInfoForm({ hotelId, pricePerNight }: Props) {
             <DatePicker
               required
               selected={checkIn}
-              onChange={(d) => {
-                setValue("checkIn", d as Date);
+              onChange={(d: Date | null) => {
+                if (d) {
+                  setValue("checkIn", d);
+                }
               }}
               selectsStart
               startDate={checkIn}
@@ -94,8 +96,10 @@ export default function GuestInfoForm({ hotelId, pricePerNight }: Props) {
             <DatePicker
               required
               selected={checkOut}
-              onChange={(d) => {
-                setValue("checkOut", d as Date);
+              onChange={(d: Date | null) => {
+                if (d) {
+                  setValue("checkOut", d);
+                }
               }}
               selectsEnd
               startDate={checkIn}

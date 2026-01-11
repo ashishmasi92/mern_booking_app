@@ -30,7 +30,7 @@ export default function Search() {
     stars: selectedStars,
     types: selectHotelTypes,
     facilities: selectedHotelFacilites,
-    maxPrice: selectedPrice,
+    maxPrice: selectedPrice?.toString(),
     sortOption: sortOption,
   };
 

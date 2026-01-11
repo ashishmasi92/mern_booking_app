@@ -12,6 +12,7 @@ import BookingSummary from "../components/BookingSummary";
 import { Elements } from "@stripe/react-stripe-js";
 import { useAppContext } from "../contexts/AppContext";
 
+
 export default function Booking() {
   let { stripePromise } = useAppContext();
   let search = useSearchContext();
@@ -61,13 +62,14 @@ export default function Booking() {
       />
       {currentuser && paymentIntentData && (
         <Elements
-          key={paymentIntentData.data.clientSecret}
+         
           stripe={stripePromise}
           options={{
             clientSecret: paymentIntentData.data.clientSecret,
           }}
         >
           <BookingForm
+            key={paymentIntentData.data.clientSecret}
             currentUser={currentuser?.data}
             paymentIntent={paymentIntentData.data}
           />

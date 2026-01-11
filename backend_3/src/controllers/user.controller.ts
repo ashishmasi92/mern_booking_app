@@ -16,7 +16,11 @@ export async function me(req: Request, res: Response) {
     }
 
     return customResponse(res, 200, false, "get user successfully", user);
-  } catch (error) {}
+  } catch (error) {
+    console.log("error me",error);
+    return customResponse(res,500,false,"intenal error")
+    
+  }
 }
 
 

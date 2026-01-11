@@ -6,7 +6,7 @@ type Props = {
   adultCount: number;
   childCount: number;
   numberOfNights: number;
-  hotel: HotelType;
+  hotel: HotelType | undefined;
 };
 
 export default function BookingSummary({
@@ -17,11 +17,6 @@ export default function BookingSummary({
   numberOfNights,
   hotel,
 }: Props) {
-
-
-
-  
-
   return (
     <div className="grid gap-4 rounded-lg border border-slate-300 p-5 h-fit">
       <h2 className="text-xl font-b capitalize">your booking</h2>

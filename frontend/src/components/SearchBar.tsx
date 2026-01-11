@@ -81,8 +81,10 @@ export default function SearchBar() {
         <div className="">
           <DatePicker
             selected={checkIn}
-            onChange={(date) => {
-              setCheckIn(date as Date);
+            onChange={(date: Date | null) => {
+              if (date) {
+                setCheckIn(date);
+              }
             }}
             selectsStart
             startDate={checkIn}
@@ -98,8 +100,10 @@ export default function SearchBar() {
         <div className="">
           <DatePicker
             selected={checkOut}
-            onChange={(date) => {
-              setCheckOut(date as Date);
+            onChange={(date: Date | null) => {
+              if (date) {
+                setCheckOut(date as Date);
+              }
             }}
             selectsEnd
             startDate={checkIn}

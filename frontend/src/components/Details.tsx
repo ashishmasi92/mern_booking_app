@@ -22,16 +22,16 @@ export default function Details() {
   if (!hotel) {
     return null;
   }
-  
+
   return (
     <div className="space-y-6 ">
       <div className="">
         <span className="flex ">
-          {Array.from({ length: hotel.starRating ?? 0 }).map((_, i) => (
+          {Array.from({ length: hotel.data.starRating ?? 0 }).map((_, i) => (
             <AiFillStar key={i} className="fill-yellow-400" />
           ))}
         </span>
-        <h1 className="text-2xl font-bold">{hotel.name}</h1>
+        <h1 className="text-2xl font-bold">{hotel.data.name}</h1>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
@@ -63,7 +63,7 @@ export default function Details() {
         <div className="h-fit">
           <GuestInfoForm
             pricePerNight={hotel.data.pricePerNight}
-            hotelId={hotel.data._id}
+            hotelId={hotel.data._id.toString()}
           />
         </div>
       </div>
