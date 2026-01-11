@@ -62,14 +62,12 @@ export default function Booking() {
       />
       {currentuser && paymentIntentData && (
         <Elements
-         
           stripe={stripePromise}
           options={{
             clientSecret: paymentIntentData.data.clientSecret,
           }}
         >
           <BookingForm
-            key={paymentIntentData.data.clientSecret}
             currentUser={currentuser?.data}
             paymentIntent={paymentIntentData.data}
           />
