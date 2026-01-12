@@ -28,16 +28,17 @@
     "multer": "^2.0.2",
     "stripe": "^20.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
-  },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
+    "typescript": "^5.9.3",
+     "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
-    "@types/node": "^25.0.6",
+    "@types/node": "^25.0.6"
+  },
+  "devDependencies": {
+   
     "nodemon": "^3.1.11"
   }
 }
