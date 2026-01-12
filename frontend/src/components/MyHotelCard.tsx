@@ -1,6 +1,6 @@
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi";
 import { BsBuilding, BsMap } from "react-icons/bs";
-import type { HotelType } from "../../../backend_3/src/shared/type";
+import type { HotelType } from "../../share/share";
 import { Link } from "react-router-dom";
 interface HotelFormProp {
   hotel: HotelType;

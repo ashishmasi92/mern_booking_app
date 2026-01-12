@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <div className="bg-blue-800 py-3 ">
-      <div className="container mx-[auto] flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center">
         <span className="text-2xl text-white font-bold tracking-tight">
           <Link to="/">MernHoliday.com</Link>
         </span>

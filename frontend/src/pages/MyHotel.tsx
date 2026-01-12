@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { getAllCreatedByUserHotels } from "../api_client";
 import MyHotelCard from "../components/MyHotelCard";
-import type { HotelType } from "../../../backend_3/src/shared/type";
+import type { HotelType } from "../../share/share";
 
 export default function MyHotel() {
   let { data: hotels, isError } = useQuery({
