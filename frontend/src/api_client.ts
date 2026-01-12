@@ -4,7 +4,7 @@ import type {
   HotelSearchResponse,
   HotelType,
   UserType,
-} from "../../backend_3/src/shared/type";
+} from "../share/share";
 import type { paymentIntentResponse } from "../share/share";
 import type { BookingFormData } from "./form/bookingForm/BookingForm";
 let url = import.meta.env.VITE_BASE_URL;

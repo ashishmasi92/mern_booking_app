@@ -4,7 +4,7 @@ import HotelTypeSection from "./HotelTypeSection";
 import HotelFacilitiesForm from "./HotelFacilitiesForm";
 import HotelGuestForm from "./HotelGuestForm";
 import HotelImageForm from "./HotelImageForm";
-import type { HotelType } from "../../../../backend_3/src/shared/type";
+import type { HotelType } from "../../../share/share";
 import { useEffect } from "react";
 
 type ManageHotelFormProps = {

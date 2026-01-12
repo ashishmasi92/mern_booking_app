@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import type {
   paymentIntentResponse,
   UserType,
-} from "../../../../backend_3/src/shared/type";
+} from "../../../share/share";
 import {
   CardElement,
   useElements,
