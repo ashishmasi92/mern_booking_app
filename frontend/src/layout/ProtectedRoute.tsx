@@ -3,7 +3,7 @@ import { Navigate,Outlet } from "react-router-dom"
 // interface ProtectedRouteProps {
 //  children:ReactNode
 // }
-import {useAppContext} from "../contexts/AppContext.tsx";
+import {useAppContext} from "../contexts/AppContext";
 
 export default function ProtectedRoute() {
       console.log("token");

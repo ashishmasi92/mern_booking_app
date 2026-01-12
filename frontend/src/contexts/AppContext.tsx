@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
-import Toast from "../components/Toast.tsx";
+import Toast from "../components/Toast";
 import { useQuery } from "@tanstack/react-query";
-import { validateToken } from "../api_client.ts";
+import { validateToken } from "../api_client";
 import { loadStripe} from "@stripe/stripe-js";
 import type { Stripe } from "@stripe/stripe-js";
 

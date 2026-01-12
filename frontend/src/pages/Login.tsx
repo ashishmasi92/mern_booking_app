@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { loggedIn } from "../api_client.ts";
+import { loggedIn } from "../api_client";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAppContext } from "../contexts/AppContext.tsx";
+import { useAppContext } from "../contexts/AppContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export type LoginFormData = {

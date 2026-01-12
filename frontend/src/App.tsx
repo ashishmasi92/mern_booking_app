@@ -1,17 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import MainLayout from "./layout/MainLayout.tsx";
-import Layout from "./layout/Layout.tsx";
+import MainLayout from "./layout/MainLayout";
+import Layout from "./layout/Layout";
 import Register from "./pages/Register";
-import Login from "./pages/Login.tsx";
-import AddHotel from "./pages/AddHotel.tsx";
-import MyHome from "./pages/MyHome.tsx";
-import ProtectedRoute from "./layout/ProtectedRoute.tsx";
-import MyHotel from "./pages/MyHotel.tsx";
-import EditHotel from "./pages/EditHotel.tsx";
-import Search from "./pages/Search.tsx";
-import Details from "./components/Details.tsx";
-import Booking from "./pages/Booking.tsx";
+import Login from "./pages/Login";
+import AddHotel from "./pages/AddHotel";
+import MyHome from "./pages/MyHome";
+import ProtectedRoute from "./layout/ProtectedRoute";
+import MyHotel from "./pages/MyHotel";
+import EditHotel from "./pages/EditHotel";
+import Search from "./pages/Search";
+import Details from "./components/Details";
+import Booking from "./pages/Booking";
 
 function App() {
   return (

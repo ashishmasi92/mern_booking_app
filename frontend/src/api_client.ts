@@ -1,12 +1,12 @@
-import type { RegisterFormData } from "./pages/Register.ts";
-import type { LoginFormData } from "./pages/Login.tsx";
+import type { RegisterFormData } from "./pages/Register";
+import type { LoginFormData } from "./pages/Login";
 import type {
   HotelSearchResponse,
   HotelType,
   UserType,
-} from "../../backend_3/src/shared/type.ts";
-import type { paymentIntentResponse } from "../../backend_3/src/shared/type.ts";
-import type { BookingFormData } from "./form/bookingForm/BookingForm.tsx";
+} from "../../backend_3/src/shared/type";
+import type { paymentIntentResponse } from "../../backend_3/src/shared/type";
+import type { BookingFormData } from "./form/bookingForm/BookingForm";
 let url = import.meta.env.VITE_BASE_URL;
 console.log("hello", url);
 
@@ -243,7 +243,9 @@ type ResponseType = {
   data: HotelType;
 };
 
-export const fetchHotelById = async (hotelId: string): Promise<ResponseType> => {
+export const fetchHotelById = async (
+  hotelId: string
+): Promise<ResponseType> => {
   let response = await fetch(`${url}/api/v1/hotels/${hotelId}`);
 
   let d = await response.json();

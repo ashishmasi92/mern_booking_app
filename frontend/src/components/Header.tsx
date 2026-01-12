@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useAppContext } from "../contexts/AppContext.tsx";
-import SignOutButton from "./SignOutButton.tsx";
+import { useAppContext } from "../contexts/AppContext";
+import SignOutButton from "./SignOutButton";
 
 export default function Header() {
   let { isLoggedIn } = useAppContext();

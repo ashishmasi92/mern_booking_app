@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import { useAppContext } from "../contexts/AppContext.tsx";
-import { addMyHotel } from "../api_client.ts";
-import ManageHotelForm from "../form/manageHotelForm2/ManageHotelForm.tsx";
+import { useAppContext } from "../contexts/AppContext";
+import { addMyHotel } from "../api_client";
+import ManageHotelForm from "../form/manageHotelForm2/ManageHotelForm";
 // import type { HotelType } from "../../../backend_3/src/shared/type.ts";
 
 export default function AddHotel() {

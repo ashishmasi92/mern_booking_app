@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
   import {useMutation } from "@tanstack/react-query"
-import { registered} from "../api_client.ts";
-import { useAppContext } from "../contexts/AppContext.tsx";
+import { registered} from "../api_client";
+import { useAppContext } from "../contexts/AppContext";
 
 
 

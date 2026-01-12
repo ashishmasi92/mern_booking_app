@@ -1,6 +1,6 @@
 import { useMutation , useQueryClient} from "@tanstack/react-query";
-import { logout } from "../api_client.ts";
-import { useAppContext } from "../contexts/AppContext.tsx";
+import { logout } from "../api_client";
+import { useAppContext } from "../contexts/AppContext";
 
 export default function SignOutButton() {
   let x = useAppContext();
