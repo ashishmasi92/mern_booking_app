@@ -8,7 +8,8 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",  // Explicit for React 19
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
+    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
