@@ -16,6 +16,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "skipDefaultLibCheck": true,
     "verbatimModuleSyntax": true,  // ESM strictness
     "resolveJsonModule": true
   },
