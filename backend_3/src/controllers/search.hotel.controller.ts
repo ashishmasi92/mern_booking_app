@@ -159,7 +159,7 @@ export async function paymentGateway(req: Request, res: Response) {
     let userId = new mongoose.Types.ObjectId(user.id);
     let hotelId = new mongoose.Types.ObjectId(paramsHotelId);
 
-    let hotel = await Hotel.findById(hotelId).where({ userId: userId }).lean();
+    let hotel = await Hotel.findById(hotelId).lean();
 
     if (!hotel) {
       return customResponse(res, 400, false, "no hotel found");
@@ -171,19 +171,19 @@ export async function paymentGateway(req: Request, res: Response) {
       amount: amount,
       currency: "usd",
       metadata: {
-        hotelId: paramsHotelId,
-        userId: user.id,
+        hotelId: hotelId.toString(),
+        userId: userId.toString(),
       },
       payment_method_types: ["card"],
     });
 
     const response = {
-      paymentIntenetId: paymentIntent.id,
+      paymentIntentId: paymentIntent.id,
       clientSecret: paymentIntent.client_secret,
       totalCost: totalCost,
     };
 
-    return customResponse(res, 200, true, "payment Success", response);
+    return customResponse(res, 200, true, "proceed to payment", response);
   } catch (error) {
     console.log("error paymentIntent", error);
     return customResponse(res, 500, false, "internal error");
@@ -192,13 +192,15 @@ export async function paymentGateway(req: Request, res: Response) {
 
 export async function bookingConfirmation(req: Request, res: Response) {
   try {
-    let hotelId = req.params.id;
+    let hotelId = req.params.hotelId;
     let user = req.userInfo as CustomJwt;
     const paymentIntentId = req.body.paymentIntentId;
+    // console.log(hotelId, user.id);
 
     const paymentIntent = await stripe.paymentIntents.retrieve(
       paymentIntentId as string
     );
+    // console.log("paymentIntent", paymentIntent);
 
     if (!paymentIntent) {
       return customResponse(res, 400, false, "payment intent not found");
@@ -219,10 +221,11 @@ export async function bookingConfirmation(req: Request, res: Response) {
       ...req.body,
       userId: user.id,
     };
+    let id = new mongoose.Types.ObjectId(hotelId);
 
-    const hotel = await Hotel.findByIdAndUpdate(
+    const hotel = await Hotel.findOneAndUpdate(
       {
-        _id: hotelId,
+        _id: id,
         "bookings.paymentIntentId": { $ne: paymentIntentId },
       },
       {
@@ -240,6 +243,7 @@ export async function bookingConfirmation(req: Request, res: Response) {
         "Hotel not found or booking already exists"
       );
     }
+    console.log(hotel);
 
     return customResponse(res, 200, true, "Booking confirmed", hotel);
   } catch (error) {
@@ -247,3 +251,5 @@ export async function bookingConfirmation(req: Request, res: Response) {
     return customResponse(res, 500, false, "internal error");
   }
 }
+
+

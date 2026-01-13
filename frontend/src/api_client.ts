@@ -1,10 +1,6 @@
 import type { RegisterFormData } from "./pages/Register";
 import type { LoginFormData } from "./pages/Login";
-import type {
-  HotelSearchResponse,
-  HotelType,
-  UserType,
-} from "../share/share";
+import type { HotelSearchResponse, HotelType, UserType } from "../share/share";
 import type { paymentIntentResponse } from "../share/share";
 import type { BookingFormData } from "./form/bookingForm/BookingForm";
 let url = import.meta.env.VITE_BASE_URL;
@@ -320,7 +316,9 @@ export const BookARoom = async (formData: BookingFormData) => {
     }
   );
 
-  let d = response.json();
+  let d = await response.json();
+  console.log(d);
+
   if (!response.ok) {
     throw new Error("hotel confirmation booking error");
   }

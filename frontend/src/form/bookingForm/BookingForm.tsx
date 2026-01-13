@@ -1,19 +1,13 @@
 import { useForm } from "react-hook-form";
-import type {
-  paymentIntentResponse,
-  UserType,
-} from "../../../share/share";
-import {
-  CardElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
+import type { paymentIntentResponse, UserType } from "../../../share/share";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import type { StripeCardElement } from "@stripe/stripe-js";
 import { useSearchContext } from "../../contexts/SearchContext";
 
 import { useMutation } from "@tanstack/react-query";
 import { BookARoom } from "../../api_client";
 import { useAppContext } from "../../contexts/AppContext";
+import { useParams } from "react-router-dom";
 type Props = {
   currentUser: UserType;
   paymentIntent: paymentIntentResponse;
@@ -34,9 +28,13 @@ export type BookingFormData = {
 
 export default function BookingForm({ currentUser, paymentIntent }: Props) {
   let stripe = useStripe();
+  let { hotelId } = useParams();
   let { showToast } = useAppContext();
   let elements = useElements();
   const search = useSearchContext();
+
+  // console.log("hotel booking", hotelId);
+
   let { register, handleSubmit } = useForm<BookingFormData>({
     defaultValues: {
       firstName: currentUser.firstName,
@@ -47,6 +45,8 @@ export default function BookingForm({ currentUser, paymentIntent }: Props) {
       checkIn: search.checkIn.toISOString(),
       checkOut: search.checkOut.toISOString(),
       paymentIntentId: paymentIntent.paymentIntentId,
+      totalCost: paymentIntent.totalCost,
+      hotelId: hotelId?.toString(),
     },
   });
 
@@ -60,16 +60,38 @@ export default function BookingForm({ currentUser, paymentIntent }: Props) {
     },
   });
 
-  const onSumbit = async (formData: BookingFormData) => {
+  const onSubmit = async (formData: BookingFormData) => {
     if (!stripe || !elements) {
       return;
     }
+    console.log("submit");
 
     const result = await stripe.confirmCardPayment(paymentIntent.clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement) as StripeCardElement,
+        billing_details: {
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          address: {
+            postal_code: "12345",
+          },
+        },
       },
     });
+    if (result.error) {
+      showToast({
+        message: result.error.message || "Payment failed",
+        type: "Error",
+      });
+      return;
+    }
+
+    if (result.paymentIntent?.status === "succeeded") {
+      mutation.mutate({
+        ...formData,
+        paymentIntentId: result.paymentIntent.id,
+      });
+    }
 
     if (result.paymentIntent?.status == "succeeded") {
       //  book the room
@@ -83,7 +105,7 @@ export default function BookingForm({ currentUser, paymentIntent }: Props) {
   return (
     <>
       <form
-        onSubmit={handleSubmit(onSumbit)}
+        onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-1 gap-5 rouned-lg border border-slate-200 p-4 "
         action=""
       >

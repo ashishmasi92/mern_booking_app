@@ -17,8 +17,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // Vite Dev
+      "http://localhost:5137", // Vite Dev
       "http://localhost:4000",
+      "http://localhost:4001",
       "https://mern-booking-app-f0st.onrender.com",
     ],
     credentials: true,
@@ -42,6 +43,7 @@ app.use(
         connectSrc: [
           "'self'",
           "http://localhost:4000",
+          "http://localhost:5137",
           "https://mern-booking-app-f0st.onrender.com",
           "https://api.stripe.com",
         ],

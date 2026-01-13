@@ -56,7 +56,7 @@ export default function AppContextProvider({
     queryFn: validateToken, // directly use the function
     retry: false,
   });
-  console.log("user:", isLoggedIn);
+  // console.log("user:", isLoggedIn);
 
   return (
     <div>

@@ -52,7 +52,7 @@ export async function hotelInput(req: Request, res: Response) {
     }
 
     let updateImg = await uploadImg(imageFiles);
-    console.log(updateImg);
+    // console.log(updateImg);
 
     let hotelInstance = new Hotel({
       ...newHotel,
@@ -61,7 +61,7 @@ export async function hotelInput(req: Request, res: Response) {
       userId: userId,
     });
     let save = await hotelInstance.save();
-    console.log(save);
+    // console.log(save);
 
     return customResponse(
       res,

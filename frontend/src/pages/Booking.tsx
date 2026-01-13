@@ -12,13 +12,11 @@ import BookingSummary from "../components/BookingSummary";
 import { Elements } from "@stripe/react-stripe-js";
 import { useAppContext } from "../contexts/AppContext";
 
-
 export default function Booking() {
   let { stripePromise } = useAppContext();
   let search = useSearchContext();
   let { hotelId } = useParams();
   let [numberOfNights, setNumberOfNights] = useState<number>(0);
-  console.log(numberOfNights);
 
   const { data: paymentIntentData } = useQuery({
     queryKey: ["createPaymentIntent", hotelId, numberOfNights],
@@ -34,6 +32,9 @@ export default function Booking() {
       return fetchHotelById(hotelId as string);
     },
     enabled: !!hotelId,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
   });
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export default function Booking() {
       setNumberOfNights(Math.max(1, Math.ceil(nights)));
     }
   }, [search.checkIn, search.checkOut]);
+  console.log(paymentIntentData);
 
   const { data: currentuser } = useQuery({
     queryKey: ["fetchCurrentUser"],
@@ -62,6 +64,7 @@ export default function Booking() {
       />
       {currentuser && paymentIntentData && (
         <Elements
+          key={paymentIntentData.data.clientSecret}
           stripe={stripePromise}
           options={{
             clientSecret: paymentIntentData.data.clientSecret,
