@@ -18,7 +18,7 @@ export default function Header() {
             <>
               <Link
                 className="flex items-center text-white px-2 py-1 hover:bg-blue-600"
-                to="/my-bookiings"
+                to="/my-bookings"
               >
                 My Bookings
               </Link>

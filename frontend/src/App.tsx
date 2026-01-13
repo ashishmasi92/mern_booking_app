@@ -12,6 +12,7 @@ import EditHotel from "./pages/EditHotel";
 import Search from "./pages/Search";
 import Details from "./components/Details";
 import Booking from "./pages/Booking";
+import MyBookings from "./pages/MyBookings";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/hotel/:hotelId/booking" element={<Booking />} />
             <Route path="/add-hotel" element={<AddHotel />} />
             <Route path="/my-hotels" element={<MyHotel />} />
+            <Route path="/my-bookings" element={<MyBookings />} />
           </Route>
         </Route>
       </Routes>

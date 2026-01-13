@@ -69,10 +69,12 @@ app.use(
 import userRouter from "./routes/user.route";
 import hotelRouter from "./routes/my-hotel";
 import searchHotelRouter from "./routes/search.hotel";
+import bookingRouter from "./routes/my-booking";
 
 app.use("/api/v1/auth/", userRouter);
 app.use("/api/v1/my-hotel", hotelRouter);
 app.use("/api/v1/hotels", searchHotelRouter);
+app.use("/api/v1/my-booking", bookingRouter);
 
 app.use(express.static(frontendPath));
 app.use((req: Request, res: Response) => {

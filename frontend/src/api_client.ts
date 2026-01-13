@@ -325,3 +325,16 @@ export const BookARoom = async (formData: BookingFormData) => {
 
   return d;
 };
+
+export const fetchBookedHotel = async ():Promise <HotelType[]> => {
+  const response = await fetch(`${url}/api/v1/my-booking/bookings-list`, {
+    credentials: "include",
+  });
+
+  let d = await response.json();
+
+  if (!response.ok) {
+    throw new Error("something went wrong");
+  }
+  return d.data;
+};

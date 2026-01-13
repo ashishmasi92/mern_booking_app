@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import customResponse from "../utils/customResponse";
 import Hotel from "../models/hotel.model";
-import { HotelSearchResponse } from "../shared/type";
+import { HotelSearchResponse, HotelType } from "../shared/type";
 import { validationResult } from "express-validator";
 import Stripe from "stripe";
 import mongoose from "mongoose";
@@ -168,7 +168,7 @@ export async function paymentGateway(req: Request, res: Response) {
     const totalCost = hotel.pricePerNight * numberOfNights;
     const amount = totalCost * 100;
     let paymentIntent = await stripe.paymentIntents.create({
-      amount: amount,
+      amount: amount * 100,
       currency: "usd",
       metadata: {
         hotelId: hotelId.toString(),
@@ -252,4 +252,29 @@ export async function bookingConfirmation(req: Request, res: Response) {
   }
 }
 
+export async function getBookingHotel(req: Request, res: Response) {
+  try {
+    let user = req.userInfo as CustomJwt;
 
+    let hotels = await Hotel.find({
+      bookings: { $elemMatch: { userId: user.id } },
+    });
+
+    let results = hotels.map((hotel) => {
+      const userBooking = hotel.bookings.filter((booking) => {
+        return booking.userId.toString() === user.id.toString();
+      });
+
+      const hotelWithUserBooking: HotelType = {
+        ...hotel.toObject(),
+        bookings: userBooking,
+      };
+      return hotelWithUserBooking;
+    });
+
+    return customResponse(res, 200, true, "bookings list", results);
+  } catch (error) {
+    console.log("error bookings", error);
+    return customResponse(res, 500, false, "internal");
+  }
+}
