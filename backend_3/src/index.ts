@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import type { Request, Response, NextFunction } from "express";
+import type { Request, Response, } from "express";
 import cookieParser from "cookie-parser";
 import "./db/connnectToDb";
 import helmet from "helmet";
@@ -16,7 +16,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "https://mern-booking-app-f0st.onrender.com",
+    ],
     credentials: true,
   })
 );
@@ -39,16 +42,13 @@ app.use(
           "'self'",
           "http://localhost:5173",
           "http://localhost:4000",
+          "https://mern-booking-app-f0st.onrender.com",
         ],
 
-        imgSrc: [
-          "'self'",
-          "data:",
-          "blob:",
-          "https://res.cloudinary.com",
-        ],
+        imgSrc: ["'self'", "data:", "blob:", "https://res.cloudinary.com"],
+        scriptSrc: ["'self'","https://js.stripe.com"],
 
-        scriptSrc: ["'self'"],
+        frameSrc: ["'self'", "https://js.stripe.com"],
         styleSrc: ["'self'", "'unsafe-inline'"],
       },
     },
