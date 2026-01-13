@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import type { Request, Response, } from "express";
+import type { Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import "./db/connnectToDb";
 import helmet from "helmet";
@@ -40,13 +40,13 @@ app.use(
 
         connectSrc: [
           "'self'",
-          "http://localhost:5173",
           "http://localhost:4000",
           "https://mern-booking-app-f0st.onrender.com",
+          "https://api.stripe.com",
         ],
 
         imgSrc: ["'self'", "data:", "blob:", "https://res.cloudinary.com"],
-        scriptSrc: ["'self'","https://js.stripe.com"],
+        scriptSrc: ["'self'", "https://js.stripe.com"],
 
         frameSrc: ["'self'", "https://js.stripe.com"],
         styleSrc: ["'self'", "'unsafe-inline'"],
