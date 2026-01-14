@@ -101,6 +101,18 @@ export async function getHotels(req: Request, res: Response) {
   }
 }
 
+export async function homePageLatestHotel(req: Request, res: Response) {
+  try {
+    let hotel = await Hotel.find().sort({ lastUpdated: -1 }).lean();
+    // console.log(hotel);
+
+    return customResponse(res, 200, true, "latest hotels", hotel);
+  } catch (error) {
+    console.log("error get Hotel", error);
+    return customResponse(res, 500, false, "internal error");
+  }
+}
+
 export async function getHotelById(req: Request, res: Response) {
   try {
     // console.log("hello world get Id",req.query);
@@ -159,7 +171,6 @@ export async function updateHotelById(req: Request, res: Response) {
       },
       {
         new: true,
-
       }
     );
 

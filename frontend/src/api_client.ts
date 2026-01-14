@@ -68,10 +68,10 @@ export async function logout() {
       credentials: "include",
     });
 
-    console.log(response);
+    // console.log(response);
     let d = await response.json();
     if (!response.ok) {
-      throw new Error(d.message);
+      throw new Error("something went wrong");
     }
 
     return d;
@@ -326,7 +326,7 @@ export const BookARoom = async (formData: BookingFormData) => {
   return d;
 };
 
-export const fetchBookedHotel = async ():Promise <HotelType[]> => {
+export const fetchBookedHotel = async (): Promise<HotelType[]> => {
   const response = await fetch(`${url}/api/v1/my-booking/bookings-list`, {
     credentials: "include",
   });
@@ -336,5 +336,20 @@ export const fetchBookedHotel = async ():Promise <HotelType[]> => {
   if (!response.ok) {
     throw new Error("something went wrong");
   }
+  return d.data;
+};
+
+export const fetchLatestHotel = async (): Promise<HotelType[]> => {
+  let response = await fetch(`${url}/api/v1/my-hotel`, {
+    credentials: "include",
+  });
+
+  let d = await response.json();
+  // console.log(d);
+
+  if (!response.ok) {
+    throw new Error("something went wrong");
+  }
+
   return d.data;
 };
